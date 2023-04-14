@@ -1,10 +1,10 @@
-import { useState } from "react";
-import "./Sorting.scss";
+import { useState } from 'react';
+import './Sorting.scss';
 
 export const Sorting = () => {
   const [isVisiblePopup, setVisiblePopup] = useState(false);
-  const list = ["популярности", "цене", "алфавиту"];
-  const [sortName, setSortName] = useState(0)
+  const list = ['популярности', 'цене', 'алфавиту'];
+  const [sortName, setSortName] = useState(0);
   const onClickListItem = (index: number) => {
     setSortName(index);
     setVisiblePopup(false);
@@ -26,7 +26,7 @@ export const Sorting = () => {
         <div className="sort__popup">
           <ul>
             {list.map((name, index) => (
-              <li key={index} onClick={() => onClickListItem(index)} className={sortName === index ? "active" : ""}>
+              <li key={index} onClick={() => onClickListItem(index)} className={sortName === index ? 'active' : ''}>
                 {name}
               </li>
             ))}

@@ -1,6 +1,6 @@
-import pizzaLogo from "../../assets/img/pizza-logo.svg";
-import './Header.scss'
-import '../Button/Button.scss'
+import pizzaLogo from '../../assets/img/pizza-logo.svg';
+import './Header.scss';
+import '../Button/Button.scss';
 
 export const Header = () => {
   return (

@@ -1,6 +1,6 @@
-import { useState } from "react";
-import "./PizzaBlock.scss";
-import "../Button/Button.scss";
+import { useState } from 'react';
+import './PizzaBlock.scss';
+import '../Button/Button.scss';
 
 export interface PizzaInfo {
   id: number;
@@ -23,14 +23,22 @@ export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, si
       <div className="pizza-block__selector">
         <ul>
           {types.map((pizzaType, index) => (
-            <li key={index} onClick={() => setActivePizzaType(index)} className={activePizzaType === index ? "active" : ""}>
-              {pizzaType === 0 ? "тонкое" : "традиционное"}
+            <li
+              key={index}
+              onClick={() => setActivePizzaType(index)}
+              className={activePizzaType === index ? 'active' : ''}
+            >
+              {pizzaType === 0 ? 'тонкое' : 'традиционное'}
             </li>
           ))}
         </ul>
         <ul>
           {sizes.map((pizzaSize, index) => (
-            <li key={index} onClick={() => setActivePizzaSize(index)} className={activePizzaSize === index ? "active" : ""}>
+            <li
+              key={index}
+              onClick={() => setActivePizzaSize(index)}
+              className={activePizzaSize === index ? 'active' : ''}
+            >
               {pizzaSize} см.
             </li>
           ))}
