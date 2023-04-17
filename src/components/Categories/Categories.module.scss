@@ -2,6 +2,22 @@
 @import '../../assets/libs/normalize';
 
 .categories {
+  @media (max-width: 1400px) {
+    margin-top: 30px;
+  }
+  @media (max-width: 1000px) {
+    width: 700px;
+    overflow: scroll;
+  }
+  @media (max-width: 880px) {
+    width: 550px;
+  }
+  @media (max-width: 690px) {
+    width: 400px;
+  }
+  @media (max-width: 500px) {
+    width: 300px;
+  }
   ul {
     display: flex;
 
