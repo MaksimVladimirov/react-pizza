@@ -13,10 +13,11 @@ export const Home = () => {
       .then((json) => {
         setPizzas(json);
         setIsLoading(false);
+        window.scrollTo(0, 0);
       });
   }, []);
   return (
-    <>
+    <div className="container">
       <div className="content__top">
         <Categories />
         <Sorting />
@@ -27,7 +28,7 @@ export const Home = () => {
           ? [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>)
           : pizzas.map((pizza: PizzaInfo, index) => <PizzaBlock key={index} {...pizza} />)}
       </div>
-    </>
+    </div>
   );
 };
 
