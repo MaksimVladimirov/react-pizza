@@ -28,8 +28,8 @@
 - React Pagination (пагинация)
 - Code Splitting
 
-
 # <a href="https://pizza-shop-delta-eight.vercel.app/" target="_blank">
+
   <img src="https://github.com/VladimirovRoman/pizza-shop/blob/main/src/assets/img/github2.png" width="600"/>
 </a>
 <a href="https://pizza-shop-delta-eight.vercel.app/" target="_blank">

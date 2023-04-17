@@ -1,4 +1,4 @@
-import styles from './NotFoundComponent.module.scss'
+import styles from './NotFoundComponent.module.scss';
 
 export const NotFoundComponent = () => {
   return (
