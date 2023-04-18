@@ -23,10 +23,9 @@
 - **Axios + Fetch** (отправка запроса на бэкенд)
 - **React Hooks** (хуки)
 - **Prettier** (форматирование кода)
-- CSS-Modules / SCSS (стилизация)
-- React Content Loader (скелетон)
-- React Pagination (пагинация)
-- Code Splitting
+- **CSS-Modules / SCSS** (стилизация)
+- **React Content Loader** (скелетон)
+- **React Pagination** (пагинация)
 
 # <a href="https://pizza-shop-delta-eight.vercel.app/" target="_blank">
 
