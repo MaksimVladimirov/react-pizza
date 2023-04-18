@@ -4,11 +4,11 @@ import styles from './Sorting.module.scss';
 export const Sorting = () => {
   const [isVisiblePopup, setVisiblePopup] = useState(false);
   const list = ['популярности', 'цене', 'алфавиту'];
-  const [sortName, setSortName] = useState(0);
-  const onClickListItem = (index: number) => {
-    setSortName(index);
-    setVisiblePopup(false);
-  };
+
+  // const onClickListItem = (index: number) => {
+  //   setSortName(index);
+  //   setVisiblePopup(false);
+  // };
 
   return (
     <div className={styles.sort}>
@@ -20,17 +20,17 @@ export const Sorting = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setVisiblePopup(!isVisiblePopup)}>{list[sortName]}</span>
+        {/* <span onClick={() => setVisiblePopup(!isVisiblePopup)}>{list[sortName]}</span> */}
       </div>
       {isVisiblePopup && (
         <div className={styles.sort__popup}>
-          <ul>
+          {/* <ul>
             {list.map((name, index) => (
               <li key={index} onClick={() => onClickListItem(index)} className={sortName === index ? 'active' : ''}>
                 {name}
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       )}
     </div>
