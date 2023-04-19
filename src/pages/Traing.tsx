@@ -2,10 +2,10 @@ export const training = () =>  {
     return (
         <>
         <div>
-            Its a first commit
+            Its a second commit
         </div>
         <div>
-            Changes in first commit
+            Changed second commit
         </div>
         </>
     )
