@@ -1,14 +1,32 @@
 import { useState } from 'react';
 import styles from './Sorting.module.scss';
 
-export const Sorting = () => {
-  const [isVisiblePopup, setVisiblePopup] = useState(false);
-  const list = ['популярности', 'цене', 'алфавиту'];
+interface SortTypeInfo {
+  name: string;
+  sortProperty: string;
+}
 
-  // const onClickListItem = (index: number) => {
-  //   setSortName(index);
-  //   setVisiblePopup(false);
-  // };
+export const Sorting = ({
+  value,
+  onClickSortType,
+}: {
+  value: { name: string; sortProperty: string };
+  onClickSortType: (name: string, sortProperty: string) => void;
+}) => {
+  const [isVisiblePopup, setVisiblePopup] = useState<boolean>(false);
+  const sortingList = [
+    { name: 'популярности (по убыванию)', sortProperty: 'rating' },
+    { name: 'популярности (по возрастанию)', sortProperty: '-rating' },
+    { name: 'цене (по убыванию', sortProperty: 'price' },
+    { name: 'цене по возрастанию)', sortProperty: '-price' },
+    { name: 'алфавиту (по убыванию)', sortProperty: 'title' },
+    { name: 'алфавиту (по возрастанию)', sortProperty: '-title' },
+  ];
+
+  const onClickListItem = (index: SortTypeInfo) => {
+    onClickSortType(index.name, index.sortProperty);
+    setVisiblePopup(false);
+  };
 
   return (
     <div className={styles.sort}>
@@ -20,17 +38,21 @@ export const Sorting = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        {/* <span onClick={() => setVisiblePopup(!isVisiblePopup)}>{list[sortName]}</span> */}
+        <span onClick={() => setVisiblePopup(!isVisiblePopup)}>{value.name}</span>
       </div>
       {isVisiblePopup && (
         <div className={styles.sort__popup}>
-          {/* <ul>
-            {list.map((name, index) => (
-              <li key={index} onClick={() => onClickListItem(index)} className={sortName === index ? 'active' : ''}>
-                {name}
+          <ul>
+            {sortingList.map((object: SortTypeInfo, index) => (
+              <li
+                key={index}
+                onClick={() => onClickListItem(object)}
+                className={value.sortProperty === object.sortProperty ? 'active' : ''}
+              >
+                {object.name}
               </li>
             ))}
-          </ul> */}
+          </ul>
         </div>
       )}
     </div>

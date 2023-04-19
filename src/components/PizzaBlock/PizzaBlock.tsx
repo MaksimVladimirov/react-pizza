@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './PizzaBlock.scss';
-// import '../Button/Button.module.scss';
 
 export interface PizzaInfo {
   id: number;
