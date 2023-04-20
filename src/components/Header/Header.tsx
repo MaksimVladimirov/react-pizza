@@ -2,9 +2,16 @@ import pizzaLogo from '../../assets/img/pizza-logo.svg';
 import styles from './Header.module.scss';
 // import styles from '../Button/Button.module.scss';
 import { Button } from '../Button/Button';
+import { Search } from '../Search/Search';
 import { Link } from 'react-router-dom';
 
-export const Header = () => {
+export const Header = ({
+  searchValue,
+  setSearchValue,
+}: {
+  searchValue: string;
+  setSearchValue: { searchValue: string; setSearchValue: string};
+}) => {
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -17,6 +24,7 @@ export const Header = () => {
             </div>
           </div>
         </Link>
+        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
         <div className={styles.container__cart}>
           <Button />
         </div>
