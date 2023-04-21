@@ -1,15 +1,6 @@
 import { useState } from 'react';
 import './PizzaBlock.scss';
 
-export interface PizzaInfo {
-  id: number;
-  title: string;
-  price: number;
-  imageUrl: string;
-  sizes: number[];
-  types: number[];
-}
-
 export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, sizes, types }): JSX.Element => {
   const [pizzaCount, setPizzaCount] = useState(0);
   const [activePizzaSize, setActivePizzaSize] = useState(0);

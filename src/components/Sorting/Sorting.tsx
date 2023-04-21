@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import styles from './Sorting.module.scss';
 
-interface SortTypeInfo {
-  name: string;
-  sortProperty: string;
-}
-
 export const Sorting = ({
   value,
   onClickSortType,

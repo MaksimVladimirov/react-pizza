@@ -5,13 +5,9 @@ import { Button } from '../Button/Button';
 import { Search } from '../Search/Search';
 import { Link } from 'react-router-dom';
 
-export const Header = ({
-  searchValue,
-  setSearchValue,
-}: {
-  searchValue: string;
-  setSearchValue: { searchValue: string; setSearchValue: string};
-}) => {
+
+
+export const Header = ({ searchValue, setSearchValue }: SearchProps) => {
   return (
     <div className={styles.header}>
       <div className={styles.container}>
