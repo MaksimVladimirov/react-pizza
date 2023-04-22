@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 
-export const Header = ({ searchValue, setSearchValue }: SearchProps) => {
+export const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -20,7 +20,7 @@ export const Header = ({ searchValue, setSearchValue }: SearchProps) => {
             </div>
           </div>
         </Link>
-        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Search/>
         <div className={styles.container__cart}>
           <Button />
         </div>

@@ -1,8 +1,11 @@
+import { useContext } from 'react';
+
 import styles from './Search.module.scss';
-import Loupe from './2202246_loupe_search_icon.svg';
+import { SearchContext } from '../../App';
 
+ export const Search = () => {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
 
-export const Search = ({ searchValue, setSearchValue }: SearchProps) => {
   return (
     <div className={styles.root}>
       <svg

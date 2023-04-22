@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination } from '../components';
+import { SearchContext } from '../App';
 
-export const Home = ({ searchValue }: { searchValue: string }) => {
+export const Home = () => {
+  const { searchValue } = useContext(SearchContext);
   const [pizzas, setPizzas] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [categoryId, setCategoryId] = useState<number>(0);
@@ -44,7 +46,7 @@ export const Home = ({ searchValue }: { searchValue: string }) => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items"> {isLoading ? skeleton : pizzasItems}</div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination onChangePage={(number: number) => setCurrentPage(number)} />
     </div>
   );
 };

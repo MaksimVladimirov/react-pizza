@@ -16,3 +16,8 @@ interface PizzaInfo {
   sizes: number[];
   types: number[];
 }
+
+interface SearchContextType {
+  searchValue: string;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
