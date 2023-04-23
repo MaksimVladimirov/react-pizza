@@ -1,18 +1,28 @@
 import { useEffect, useState, useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination } from '../components';
 import { SearchContext } from '../App';
 
 export const Home = () => {
+  const categoryId = useSelector((state) => state.filterSlice.categoryId )
+  const dispatch = useDispatch()
+  
   const { searchValue } = useContext(SearchContext);
   const [pizzas, setPizzas] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [categoryId, setCategoryId] = useState<number>(0);
+  // const [categoryId, setCategoryId] = useState<number>(0);  
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [sortType, setSortType] = useState({
     name: 'популярности',
     sortProperty: 'rating',
   });
+
+  const onChangeCategory = (id) => {
+    console.log(id)
+  } 
+  
+  console.log(categoryId)
 
   useEffect(() => {
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
@@ -20,7 +30,7 @@ export const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    setIsLoading(true);
+    setIsLoading(true); 
 
     fetch(
       `https://6436da148205915d34fe9ac0.mockapi.io/pizzas?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
@@ -38,7 +48,7 @@ export const Home = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories value={categoryId} onClickCategory={(id: number) => setCategoryId(id)} />
+        <Categories value={categoryId} onClickCategory={onChangeCategory} />
         <Sorting
           value={sortType}
           onClickSortType={(name: string, sortProperty: string) => setSortType({ name, sortProperty })}
