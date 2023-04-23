@@ -17,7 +17,12 @@ interface PizzaInfo {
   types: number[];
 }
 
-interface SearchContextType {
+interface SearchContextInfo {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+
+interface PaginationProps {
+  onChangePage: (selectedPage: number) => void;
 }

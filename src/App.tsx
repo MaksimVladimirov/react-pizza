@@ -7,7 +7,7 @@ import { NotFound } from './pages/NotFound';
 import { Cart } from './pages/Cart';
 import './App.scss';
 
-export const SearchContext = createContext<SearchContextType>({
+export const SearchContext = createContext<SearchContextInfo>({
   searchValue: '',
   setSearchValue: () => {},
 });
