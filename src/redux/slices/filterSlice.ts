@@ -6,11 +6,11 @@ const initialState = {
 };
 
 const filterSlice = createSlice({
-  name: 'filter',
+  name: 'filters',
   initialState,
   reducers: {
     setCategoryId(state, action) {
-      state.categoryId = action.payload;
+    state.categoryId = action.payload;
     },
   },
 });

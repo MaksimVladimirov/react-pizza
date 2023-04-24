@@ -26,3 +26,12 @@ interface SearchContextInfo {
 interface PaginationProps {
   onChangePage: (selectedPage: number) => void;
 }
+
+interface FilterState {
+  categoryId: number;
+}
+
+interface RootState {
+  filterSlice: FilterState;
+  // other reducers can be added here
+}
