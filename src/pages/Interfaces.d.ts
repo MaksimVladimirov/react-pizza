@@ -29,6 +29,9 @@ interface PaginationProps {
 
 interface FilterState {
   categoryId: number;
+  sortId: {
+    name:string,
+    sortProperty: string}
 }
 
 interface RootState {
