@@ -1,9 +1,7 @@
 import styles from './Categories.module.scss';
 
-const pizzaCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
-export const Categories = ({ value, onChangeCategory }: { value: number, onChangeCategory: (index: number) => void }) => {
-  
+export const Categories = ({ value, onClickCategory }: { value: number, onClickCategory: (index: number) => void }) => {
+  const pizzaCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (
     <div className={styles.categories}>
