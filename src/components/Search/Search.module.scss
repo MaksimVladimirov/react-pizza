@@ -1,0 +1,36 @@
+.root {
+  left: -100px;
+  position: relative;
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px 20px;
+  width: 300px;
+  border-radius: 10px;
+  font-size: 18px;
+  padding-left: 50px;
+
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+}
+
+.loupe {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+}
+
+.search {
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+  cursor: pointer;
+}
