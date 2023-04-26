@@ -18,7 +18,7 @@ export const Sorting = () => {
 
   const [isVisiblePopup, setVisiblePopup] = useState<boolean>(false);
 
-  const onClickListItem = (obj) => {
+  const onClickListItem = (obj: SortTypeInfo) => {
     dispatch(setSortId(obj));
     setVisiblePopup(false);
   };
