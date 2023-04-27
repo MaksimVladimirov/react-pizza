@@ -25,9 +25,6 @@ export const Sorting = () => {
 
   return (
     <div className={styles.sort}>
-      <div>
-        cherry-pick
-      </div>
       <div className={styles.sort__label}>
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
