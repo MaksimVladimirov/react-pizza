@@ -1,23 +1,28 @@
 import { useEffect, useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
-import { Categories, Sorting, PizzaBlock, Skeleton, Pagination } from '../components';
-import { setCategoryId } from '../redux/slices/filterSlice';
-import { SearchContext } from '../App';
 import { useDispatch } from 'react-redux';
+import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
+
+import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
+import { setCategoryId, setCurrentPageCount, setFilters } from '../redux/slices/filterSlice';
+import { SearchContext } from '../App';
 
 export const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { categoryId, sortId } = useSelector((state: RootState) => state.filterSlice);
-
+  const { categoryId, sortId, currentPage } = useSelector((state: RootState) => state.filterSlice);
   const { searchValue } = useContext(SearchContext);
   const [pizzas, setPizzas] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
+  };
+
+  const onChangePage = (number: number) => {
+    dispatch(setCurrentPageCount(number));
   };
 
   useEffect(() => {
@@ -38,6 +43,28 @@ export const Home = () => {
     window.scrollTo(0, 0);
   }, [categoryId, sortId.sortProperty, searchValue, currentPage]);
 
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const sort = sortingList.find((object) => object.sortProperty === params.sortProperty);
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    const queryString = qs.stringify({
+      sortProperty: sortId.sortProperty,
+      categoryId,
+      currentPage,
+    });
+    navigate(`?${queryString}`);
+  }, [categoryId, sortId.sortProperty, searchValue, currentPage]);
+
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
   const pizzasItems = pizzas.map((pizza: PizzaInfo, index) => <PizzaBlock key={index} {...pizza} />);
   return (
@@ -48,7 +75,7 @@ export const Home = () => {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items"> {isLoading ? skeleton : pizzasItems}</div>
-      <Pagination onChangePage={(number: number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };

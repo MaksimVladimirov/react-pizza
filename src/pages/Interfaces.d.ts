@@ -22,16 +22,18 @@ interface SearchContextInfo {
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-
 interface PaginationProps {
   onChangePage: (selectedPage: number) => void;
+  currentPage: number;
 }
 
 interface FilterState {
   categoryId: number;
+  currentPage: number;
   sortId: {
-    name:string,
-    sortProperty: string}
+    name: string;
+    sortProperty: string;
+  };
 }
 
 interface RootState {
