@@ -1,11 +1,9 @@
-import pizzaLogo from '../../assets/img/pizza-logo.svg';
-import styles from './Header.module.scss';
-// import styles from '../Button/Button.module.scss';
-import { Button } from '../Button/Button';
-import { Search } from '../Search/Search';
 import { Link } from 'react-router-dom';
 
-
+import pizzaLogo from '../../assets/img/pizza-logo.svg';
+import styles from './Header.module.scss';
+import { Button } from '../Button/Button';
+import { Search } from '../Search/Search';
 
 export const Header = () => {
   return (
@@ -20,7 +18,7 @@ export const Header = () => {
             </div>
           </div>
         </Link>
-        <Search/>
+        <Search />
         <div className={styles.container__cart}>
           <Button />
         </div>

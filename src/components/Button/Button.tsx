@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import './Button.scss';
 
 export const Button = () => {
+  const { items, totalPrice } = useSelector((state: RootState) => state.cartSlice);
+
   return (
     <Link to="/cart" className="button button--cart">
-      <span>520 ₽</span>
+      <span>{totalPrice}₽</span>
       <div className="button__delimiter"></div>
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -29,7 +33,7 @@ export const Button = () => {
           strokeLinejoin="round"
         />
       </svg>
-      <span>3</span>
+      <span>{items.length}</span>
     </Link>
   );
 };

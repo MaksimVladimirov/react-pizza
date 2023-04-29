@@ -36,8 +36,14 @@ interface FilterState {
   };
 }
 
+interface CartState {
+  items: [];
+  totalPrice: number;
+}
+
 interface RootState {
   filterSlice: FilterState;
+  cartSlice: CartState;
 }
 
 interface SyntheticEvent {

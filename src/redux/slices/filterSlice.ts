@@ -9,7 +9,6 @@ const initialState = {
   },
 };
 
-
 const filterSlice = createSlice({
   name: 'filters',
   initialState,
@@ -27,7 +26,7 @@ const filterSlice = createSlice({
       state.currentPage = action.payload.currentPage;
       state.sortId = action.payload.sort;
       state.categoryId = action.payload.categoryId;
-    }
+    },
   },
 });
 
