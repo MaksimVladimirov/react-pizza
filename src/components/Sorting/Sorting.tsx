@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Sorting.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSortId } from '../../redux/slices/filterSlice';
@@ -15,6 +15,7 @@ export const sortingList = [
 export const Sorting = () => {
   const dispatch = useDispatch();
   const sort = useSelector((state: RootState) => state.filterSlice.sortId);
+  const sortRef = useRef(null);
 
   const [isVisiblePopup, setVisiblePopup] = useState<boolean>(false);
 
@@ -23,8 +24,20 @@ export const Sorting = () => {
     setVisiblePopup(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setVisiblePopup(false);
+      }
+    };
+    document.body.addEventListener('click', handleClickOutside);
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={styles.sort}>
+    <div ref={sortRef} className={styles.sort}>
       <div className={styles.sort__label}>
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
