@@ -5,6 +5,7 @@ import './Button.scss';
 
 export const Button = () => {
   const { items, totalPrice } = useSelector((state: RootState) => state.cartSlice);
+  const totalCount = items.reduce((acc, item) => acc + item.count, 0)
 
   return (
     <Link to="/cart" className="button button--cart">
@@ -33,7 +34,7 @@ export const Button = () => {
           strokeLinejoin="round"
         />
       </svg>
-      <span>{items.length}</span>
+      <span>{totalCount}</span>
     </Link>
   );
 };

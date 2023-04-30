@@ -15,6 +15,8 @@ interface PizzaInfo {
   imageUrl: string;
   sizes: number[];
   types: number[];
+  type: string;
+  count: number
 }
 
 interface SearchContextInfo {
@@ -37,7 +39,10 @@ interface FilterState {
 }
 
 interface CartState {
-  items: [];
+  cartSlice: {
+    items: CartItemInfo[];
+    count: number;
+  };
   totalPrice: number;
 }
 
@@ -63,4 +68,10 @@ interface SyntheticEvent {
 
 interface MouseEvent {
   composedPath: () => any[];
+}
+
+interface CartItemInfo {
+  id: number;
+  price: number;
+  count: number;
 }

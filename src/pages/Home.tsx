@@ -1,9 +1,8 @@
 import { useEffect, useState, useContext, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import qs from 'qs';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import qs from 'qs';
 
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
 import { setCategoryId, setCurrentPageCount, setFilters } from '../redux/slices/filterSlice';
@@ -54,7 +53,7 @@ export const Home = () => {
     isSearch.current = false;
   }, [categoryId, sortId.sortProperty, searchValue, currentPage]);
 
-  // При первом рендере не вшивать параметры в URL 
+  // При первом рендере не вшивать параметры в URL
   useEffect(() => {
     if (isMounted.current) {
       const queryString = qs.stringify({
@@ -84,7 +83,7 @@ export const Home = () => {
 
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
   const pizzasItems = pizzas.map((pizza: PizzaInfo, index) => <PizzaBlock key={index} {...pizza} />);
-  
+
   return (
     <div className="container">
       <div className="content__top">

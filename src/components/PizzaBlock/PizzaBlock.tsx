@@ -7,7 +7,7 @@ const typeNames = ['тонкое', 'традиционное'];
 
 export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, sizes, types }): JSX.Element => {
   const dispatch = useDispatch();
-  const cartItem = useSelector((state) => state.cartSlice.items.find((obj) => obj.id === id));
+  const cartItem = useSelector((state: CartState) => state.cartSlice.items.find((obj: CartItemInfo) => obj.id === id));
   const [activePizzaSize, setActivePizzaSize] = useState(0);
   const [activePizzaType, setActivePizzaType] = useState(0);
   const addedCount = cartItem ? cartItem.count : 0;
@@ -21,7 +21,7 @@ export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, si
       type: typeNames[activePizzaType],
       size: activePizzaSize,
     };
-    dispatch(addItem(item));
+    dispatch(addItem(item)); 
   };
 
   return (
