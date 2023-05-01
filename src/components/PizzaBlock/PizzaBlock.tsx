@@ -19,9 +19,9 @@ export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, si
       price,
       imageUrl,
       type: typeNames[activePizzaType],
-      size: activePizzaSize,
+      size: sizes[activePizzaSize],
     };
-    dispatch(addItem(item)); 
+    dispatch(addItem(item));
   };
 
   return (
