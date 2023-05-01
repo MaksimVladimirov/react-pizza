@@ -26,21 +26,21 @@ export const Home = () => {
     dispatch(setCurrentPageCount(number));
   };
 
-  const fetchPizzas = () => {
+  const fetchPizzas = async () => {
     const order = sortId.sortProperty.includes('-') ? 'asc' : 'desc';
     const sortBy = sortId.sortProperty.replace('-', '');
     const category = categoryId > 0 ? `&category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
-
-    setIsLoading(true);
-    axios
-      .get(
-        `https://6436da148205915d34fe9ac0.mockapi.io/pizzas?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
-      )
-      .then((response) => {
-        setPizzas(response.data);
-        setIsLoading(false);
-      });
+    try {
+      const response = await axios.get(
+        `https://6436da14205915d34fe9ac0.mockapi.io/pizzas?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
+      );
+      setPizzas(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      alert('Ошибка при получении пицц');
+    }
   };
 
   // Если был первый рендер запрашиваем пиццы
