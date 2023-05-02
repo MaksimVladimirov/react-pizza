@@ -16,7 +16,7 @@ interface PizzaInfo {
   sizes: number[];
   types: number[];
   type: string;
-  count: number
+  count: number;
 }
 
 interface SearchContextInfo {
@@ -38,6 +38,10 @@ interface FilterState {
   };
 }
 
+interface PizzasState {
+  items: [];
+}
+
 interface CartState {
   cartSlice: {
     items: CartItemInfo[];
@@ -49,6 +53,7 @@ interface CartState {
 interface RootState {
   filterSlice: FilterState;
   cartSlice: CartState;
+  pizzasSlice: PizzasState;
 }
 
 interface SyntheticEvent {

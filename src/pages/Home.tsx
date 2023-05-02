@@ -1,18 +1,20 @@
 import { useEffect, useState, useContext, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 import qs from 'qs';
 
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
 import { setCategoryId, setCurrentPageCount, setFilters } from '../redux/slices/filterSlice';
+import { fetchPizzas } from '../redux/slices/pizzasSlice';
+
 import { SearchContext } from '../App';
 
 export const Home = () => {
   const { categoryId, sortId, currentPage } = useSelector((state: RootState) => state.filterSlice);
+  const items = useSelector((state: RootState) => state.pizza.items);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { searchValue } = useContext(SearchContext);
-  const [pizzas, setPizzas] = useState<[]>([]);
   const isMounted = useRef(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,20 +28,26 @@ export const Home = () => {
     dispatch(setCurrentPageCount(number));
   };
 
-  const fetchPizzas = async () => {
+  const getPizzas = async () => {
     const order = sortId.sortProperty.includes('-') ? 'asc' : 'desc';
     const sortBy = sortId.sortProperty.replace('-', '');
     const category = categoryId > 0 ? `&category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
+
     try {
-      const response = await axios.get(
-        `https://6436da14205915d34fe9ac0.mockapi.io/pizzas?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
+      dispatch(
+        fetchPizzas({
+          order,
+          sortBy,
+          category,
+          search,
+          currentPage,
+        })
       );
-      setPizzas(response.data);
-      setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
       alert('Ошибка при получении пицц');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -47,7 +55,7 @@ export const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (!isSearch.current) {
-      fetchPizzas();
+      getPizzas();
     }
 
     isSearch.current = false;
@@ -82,7 +90,7 @@ export const Home = () => {
   }, []);
 
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
-  const pizzasItems = pizzas.map((pizza: PizzaInfo, index) => <PizzaBlock key={index} {...pizza} />);
+  const pizzasItems = items.map((pizza: PizzaInfo, index) => <PizzaBlock key={index} {...pizza} />);
 
   return (
     <div className="container">
