@@ -1,19 +1,16 @@
-import { useEffect, useState, useContext, useRef } from 'react';
+import { useEffect,  useContext, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 import qs from 'qs';
 
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
 import { setCategoryId, setCurrentPageCount, setFilters } from '../redux/slices/filterSlice';
 import { fetchPizzas } from '../redux/slices/pizzasSlice';
-
 import { SearchContext } from '../App';
 
 export const Home = () => {
   const { categoryId, sortId, currentPage } = useSelector((state: RootState) => state.filterSlice);
-  const items = useSelector((state: RootState) => state.pizza.items);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { items, status } = useSelector((state: RootState) => state.pizza);
   const { searchValue } = useContext(SearchContext);
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -34,21 +31,15 @@ export const Home = () => {
     const category = categoryId > 0 ? `&category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    try {
-      dispatch(
-        fetchPizzas({
-          order,
-          sortBy,
-          category,
-          search,
-          currentPage,
-        })
-      );
-    } catch (error) {
-      alert('Ошибка при получении пицц');
-    } finally {
-      setIsLoading(false);
-    }
+    dispatch(
+      fetchPizzas({
+        order,
+        sortBy,
+        category,
+        search,
+        currentPage,
+      })
+    );
   };
 
   // Если был первый рендер запрашиваем пиццы
@@ -90,7 +81,7 @@ export const Home = () => {
   }, []);
 
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
-  const pizzasItems = items.map((pizza: PizzaInfo, index) => <PizzaBlock key={index} {...pizza} />);
+  const pizzasItems = items.map((pizza: PizzaInfo, index: number) => <PizzaBlock key={index} {...pizza} />);
 
   return (
     <div className="container">
@@ -99,7 +90,16 @@ export const Home = () => {
         <Sorting />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items"> {isLoading ? skeleton : pizzasItems}</div>
+      {status === 'error' ? (
+        <div>
+          <h2 className='content__error-info'>Произошла ошибка 😕</h2>
+          <p>
+            К сожалению, не удалось получить пиццы. Попробуйте обновить страницу
+          </p>
+        </div>
+      ) : (
+        <div className="content__items"> {status === 'loading' ? skeleton : pizzasItems}</div>
+      )}
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );

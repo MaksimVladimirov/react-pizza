@@ -53,7 +53,7 @@ interface CartState {
 interface RootState {
   filterSlice: FilterState;
   cartSlice: CartState;
-  pizzasSlice: PizzasState;
+  pizza: PizzasState;
 }
 
 interface SyntheticEvent {
