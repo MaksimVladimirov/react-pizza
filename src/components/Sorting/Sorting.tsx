@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import styles from './Sorting.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSortId } from '../../redux/slices/filterSlice';
+import { selectSort } from '../../redux/slices/filterSlice';
 
 export const sortingList = [
   { name: 'популярности (по убыванию)', sortProperty: 'rating' },
@@ -14,7 +15,7 @@ export const sortingList = [
 
 export const Sorting = () => {
   const dispatch = useDispatch();
-  const sort = useSelector((state: RootState) => state.filterSlice.sortId);
+  const sort = useSelector(selectSort);
   const sortRef = useRef(null);
 
   const [isVisiblePopup, setVisiblePopup] = useState<boolean>(false);

@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { selectCart } from '../../redux/slices/cartSlice';
 import './Button.scss';
 
 export const Button = () => {
-  const { items, totalPrice } = useSelector((state: RootState) => state.cartSlice);
+  const { items, totalPrice } = useSelector(selectCart);
   const totalCount = items.reduce((acc, item) => acc + item.count, 0)
 
   return (

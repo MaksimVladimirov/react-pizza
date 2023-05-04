@@ -1,16 +1,17 @@
-import { useEffect,  useContext, useRef } from 'react';
+import { useEffect, useContext, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
+import { selectPizzaData } from '../redux/slices/pizzasSlice';
 
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
-import { setCategoryId, setCurrentPageCount, setFilters } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPageCount, setFilters, selectFilter } from '../redux/slices/filterSlice';
 import { fetchPizzas } from '../redux/slices/pizzasSlice';
 import { SearchContext } from '../App';
 
 export const Home = () => {
-  const { categoryId, sortId, currentPage } = useSelector((state: RootState) => state.filterSlice);
-  const { items, status } = useSelector((state: RootState) => state.pizza);
+  const { categoryId, sortId, currentPage } = useSelector(selectFilter);
+  const { items, status } = useSelector(selectPizzaData);
   const { searchValue } = useContext(SearchContext);
   const isMounted = useRef(false);
   const navigate = useNavigate();
@@ -92,10 +93,8 @@ export const Home = () => {
       <h2 className="content__title">Все пиццы</h2>
       {status === 'error' ? (
         <div>
-          <h2 className='content__error-info'>Произошла ошибка 😕</h2>
-          <p>
-            К сожалению, не удалось получить пиццы. Попробуйте обновить страницу
-          </p>
+          <h2 className="content__error-info">Произошла ошибка 😕</h2>
+          <p>К сожалению, не удалось получить пиццы. Попробуйте обновить страницу</p>
         </div>
       ) : (
         <div className="content__items"> {status === 'loading' ? skeleton : pizzasItems}</div>

@@ -5,6 +5,7 @@ import styles from './Search.module.scss';
 import { SearchContext } from '../../App';
 
 export const Search = () => {
+  
   const [value, setValue] = useState('');
   const { setSearchValue } = useContext(SearchContext);
   const inputRef = useRef<HTMLInputElement>(null);
