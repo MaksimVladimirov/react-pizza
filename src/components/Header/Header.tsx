@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import pizzaLogo from '../../assets/img/pizza-logo.svg';
 import styles from './Header.module.scss';
@@ -6,6 +6,8 @@ import { Button } from '../Button/Button';
 import { Search } from '../Search/Search';
 
 export const Header = () => {
+  const location = useLocation()
+
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -19,9 +21,7 @@ export const Header = () => {
           </div>
         </Link>
         <Search />
-        <div className={styles.container__cart}>
-          <Button />
-        </div>
+        <div className={styles.container__cart}>{location.pathname !== '/cart' && <Button />}</div>
       </div>
     </div>
   );
