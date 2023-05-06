@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
-import { selectPizzaData } from '../redux/slices/pizzasSlice';
 
+import { selectPizzaData } from '../redux/slices/pizzasSlice';
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
 import { setCategoryId, setCurrentPageCount, setFilters, selectFilter } from '../redux/slices/filterSlice';
 import { fetchPizzas } from '../redux/slices/pizzasSlice';
@@ -80,7 +80,11 @@ export const Home = () => {
   }, []);
 
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
-  const pizzasItems = items.map((pizza: PizzaInfo, index: number) => <PizzaBlock key={index} {...pizza} />);
+  const pizzasItems = items.map((pizza: PizzaInfo, index: number) => (
+    <Link key={index} to={`/pizza/${pizza.id}`}>
+      <PizzaBlock {...pizza} />
+    </Link>
+  ));
 
   return (
     <div className="container">

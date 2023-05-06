@@ -6,7 +6,7 @@ import { Button } from '../Button/Button';
 import { Search } from '../Search/Search';
 
 export const Header = () => {
-  const location = useLocation()
+  const location = useLocation();
 
   return (
     <div className={styles.header}>
