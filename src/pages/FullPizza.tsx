@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 export const FullPizza = () => {
-  const [pizza, setPizza] = useState();
+  const [pizza, setPizza] = useState<PizzaInfo>();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export const FullPizza = () => {
   }, []);
 
   if (!pizza) {
-    return 'Загрузка...';
+    return <>Загрузка...</>;
   }
 
   return (

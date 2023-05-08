@@ -19,6 +19,14 @@ interface PizzaInfo {
   count: number;
 }
 
+interface FetchPizzasInfo {
+  order: string;
+  sortBy: string;
+  category: string;
+  search: string;
+  currentPage: number;
+}
+
 interface SearchContextInfo {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
@@ -46,8 +54,8 @@ interface CartState {
   cartSlice: {
     items: CartItemInfo[];
     count: number;
+    totalPrice: number;
   };
-  totalPrice: number;
 }
 
 interface RootState {
