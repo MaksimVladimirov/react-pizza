@@ -6,7 +6,7 @@ import { selectCartItemById } from '../../redux/slices/cartSlice';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, sizes, types }): JSX.Element => {
+export const PizzaBlock: React.FC<PizzaInfo> = ({ id, title, imageUrl, price, sizes, types })  => {
   const dispatch = useDispatch();
   const cartItem = useSelector(selectCartItemById);
   const [activePizzaSize, setActivePizzaSize] = useState(0);

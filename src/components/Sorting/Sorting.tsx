@@ -4,23 +4,27 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSortId } from '../../redux/slices/filterSlice';
 import { selectSort } from '../../redux/slices/filterSlice';
 
-export const sortingList = [
-  { name: 'популярности (по убыванию)', sortProperty: 'rating' },
+type SortingItems = {
+  name: string;
+  sortProperty: string;
+};
+
+export const sortingList: SortingItems[] = [
   { name: 'популярности (по возрастанию)', sortProperty: '-rating' },
-  { name: 'цене (по убыванию', sortProperty: 'price' },
-  { name: 'цене по возрастанию)', sortProperty: '-price' },
-  { name: 'алфавиту (по убыванию)', sortProperty: 'title' },
+  { name: 'популярности (по убыванию)', sortProperty: 'rating' },
   { name: 'алфавиту (по возрастанию)', sortProperty: '-title' },
+  { name: 'алфавиту (по убыванию)', sortProperty: 'title' },
+  { name: 'цене по возрастанию)', sortProperty: '-price' },
+  { name: 'цене (по убыванию', sortProperty: 'price' },
 ];
 
 export const Sorting = () => {
-  const dispatch = useDispatch();
+  const [isVisiblePopup, setVisiblePopup] = useState(false);
+  const sortRef = useRef<HTMLDivElement>(null);
   const sort = useSelector(selectSort);
-  const sortRef = useRef(null);
+  const dispatch = useDispatch();
 
-  const [isVisiblePopup, setVisiblePopup] = useState<boolean>(false);
-
-  const onClickListItem = (obj: SortTypeInfo) => {
+  const onClickListItem = (obj: SortingItems) => {
     dispatch(setSortId(obj));
     setVisiblePopup(false);
   };
@@ -52,7 +56,7 @@ export const Sorting = () => {
       {isVisiblePopup && (
         <div className={styles.sort__popup}>
           <ul>
-            {sortingList.map((obj: SortTypeInfo, index) => (
+            {sortingList.map((obj: SortingItems, index) => (
               <li
                 key={index}
                 onClick={() => onClickListItem(obj)}

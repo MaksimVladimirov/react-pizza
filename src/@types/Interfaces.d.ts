@@ -3,12 +3,8 @@ interface SearchProps {
   setSearchValue: (value: string) => void;
 }
 
-interface SortTypeInfo {
-  name: string;
-  sortProperty: string;
-}
-
 interface PizzaInfo {
+  key: number
   id: number;
   title: string;
   price: number;
@@ -18,7 +14,7 @@ interface PizzaInfo {
   type: string;
   count: number;
 }
-
+ 
 interface FetchPizzasInfo {
   order: string;
   sortBy: string;
@@ -84,7 +80,13 @@ interface MouseEvent {
 }
 
 interface CartItemInfo {
+  key: number;
   id: number;
+  title: string;
   price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+  type: string;
   count: number;
 }
