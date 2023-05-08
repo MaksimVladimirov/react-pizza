@@ -4,7 +4,7 @@ interface SearchProps {
 }
 
 interface PizzaInfo {
-  key: number
+  key: number;
   id: number;
   title: string;
   price: number;
@@ -13,8 +13,9 @@ interface PizzaInfo {
   types: number[];
   type: string;
   count: number;
+  rating: number;
 }
- 
+
 interface FetchPizzasInfo {
   order: string;
   sortBy: string;
@@ -26,11 +27,6 @@ interface FetchPizzasInfo {
 interface SearchContextInfo {
   searchValue: string;
   setSearchValue: React.Dispatch<React.SetStateAction<string>>;
-}
-
-interface PaginationProps {
-  onChangePage: (selectedPage: number) => void;
-  currentPage: number;
 }
 
 interface FilterState {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-export const FullPizza = () => {
+export const FullPizza: React.FC = () => {
   const [pizza, setPizza] = useState<PizzaInfo>();
   const { id } = useParams();
   const navigate = useNavigate();

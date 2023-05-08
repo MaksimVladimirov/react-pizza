@@ -13,8 +13,10 @@ const cartSlice = createSlice({
     addItem(state, action) {
       const findItem = state.items.find((obj: CartItemInfo) => obj.id === action.payload.id);
       if (findItem) {
+        // @ts-ignore
         findItem.count++;
       } else {
+        // @ts-ignore
         state.items.push({ ...action.payload, count: 1 });
       }
       state.totalPrice = state.items.reduce((acc, obj: CartItemInfo) => {
@@ -31,6 +33,7 @@ const cartSlice = createSlice({
     minusItem(state, action) {
       const findItem = state.items.find((obj: CartItemInfo) => obj.id === action.payload);
       if (findItem) {
+        // @ts-ignore
         findItem.count--;
       }
     },

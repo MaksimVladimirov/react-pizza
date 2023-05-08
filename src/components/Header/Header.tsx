@@ -5,7 +5,7 @@ import styles from './Header.module.scss';
 import { Button } from '../Button/Button';
 import { Search } from '../Search/Search';
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const location = useLocation();
 
   return (

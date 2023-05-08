@@ -18,7 +18,7 @@ export const sortingList: SortingItems[] = [
   { name: 'цене (по убыванию', sortProperty: 'price' },
 ];
 
-export const Sorting = () => {
+export const Sorting: React.FC = () => {
   const [isVisiblePopup, setVisiblePopup] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
   const sort = useSelector(selectSort);

@@ -1,6 +1,11 @@
 import styles from './Categories.module.scss';
 
-export const Categories = ({ value, onChangeCategory }: { value: number; onChangeCategory: (index: number) => void }) => {
+type CategoriesProps = {
+  value: number;
+  onChangeCategory: (index: number) => void 
+}
+
+export const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
   const pizzaCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (

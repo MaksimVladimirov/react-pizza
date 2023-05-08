@@ -8,7 +8,7 @@ import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } fr
 import { setCategoryId, setCurrentPageCount, setFilters, selectFilter } from '../redux/slices/filterSlice';
 import { fetchPizzas } from '../redux/slices/pizzasSlice';
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const { categoryId, sortId, currentPage, searchValue } = useSelector(selectFilter);
   const { items, status } = useSelector(selectPizzaData);
   const isMounted = useRef(false);
@@ -16,8 +16,8 @@ export const Home = () => {
   const dispatch = useDispatch();
   const isSearch = useRef(false);
 
-  const onChangeCategory = (id: number) => {
-    dispatch(setCategoryId(id));
+  const onChangeCategory = (index: number) => {
+    dispatch(setCategoryId(index));
   };
 
   const onChangePage = (number: number) => {
@@ -31,6 +31,7 @@ export const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
+      // @ts-ignore
       fetchPizzas({
         order,
         sortBy,
