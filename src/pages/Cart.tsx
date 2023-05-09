@@ -6,8 +6,8 @@ import { CartEmpty } from '../components/CartEmpty/CartEmpty';
 
 export const Cart: React.FC = () => {
   const dispatch = useDispatch();
-  const { totalPrice, items } = useSelector((state: CartState) => state.cartSlice);
-  const totalCount = items.reduce((acc, item) => acc + item.count, 0);
+  const { totalPrice, items } = useSelector((state: RootState) => state.cartSlice);
+  const totalCount = items.reduce((acc: number, item: PizzaInfo) => acc + item.count, 0);
 
   const onClickClear = () => {
     if (window.confirm('Очистить корзину?')) {
@@ -85,7 +85,8 @@ export const Cart: React.FC = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((pizza: any) => (
+          {items.map((pizza: PizzaInfo) => (
+            //@ts-ignore
             <CartItem {...pizza} key={pizza.id} />
           ))}
         </div>

@@ -4,6 +4,7 @@ import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice';
 export const CartItem: React.FC<PizzaInfo> = ({ id, title, price, count, imageUrl, type, sizes }) => {
   const dispatch = useDispatch();
   const onClickPlus = () => {
+    // @ts-ignore
     dispatch(addItem({ id }));
   };
 

@@ -9,6 +9,10 @@ type SortingItems = {
   sortProperty: string;
 };
 
+type PopupClickType = {
+  composedPath: () => any[];
+}
+
 export const sortingList: SortingItems[] = [
   { name: 'популярности (по возрастанию)', sortProperty: '-rating' },
   { name: 'популярности (по убыванию)', sortProperty: 'rating' },
@@ -30,7 +34,7 @@ export const Sorting: React.FC = () => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: PopupClickType) => {
       if (!event.composedPath().includes(sortRef.current)) {
         setVisiblePopup(false);
       }

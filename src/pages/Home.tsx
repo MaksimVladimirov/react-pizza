@@ -31,7 +31,6 @@ export const Home: React.FC = () => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         order,
         sortBy,
@@ -73,6 +72,7 @@ export const Home: React.FC = () => {
       dispatch(
         setFilters({
           ...params,
+          //@ts-ignore
           sort,
         })
       );
