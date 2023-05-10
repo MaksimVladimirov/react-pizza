@@ -12,7 +12,7 @@ export type CartItem = {
   imageUrl: string;
   type: string;
   size: number;
-  count: number
+  count: number;
 };
 
 const initialState: CartSliceState = {

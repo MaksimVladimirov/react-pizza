@@ -1,25 +1,25 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Sorting.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSortId } from '../../redux/slices/filterSlice';
+import { Sort, SortPropertyEnum, setSortId } from '../../redux/slices/filterSlice';
 import { selectSort } from '../../redux/slices/filterSlice';
 
 type SortingItems = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortPropertyEnum;
 };
 
 type PopupClickType = {
   composedPath: () => any[];
-}
+};
 
 export const sortingList: SortingItems[] = [
-  { name: 'популярности (по возрастанию)', sortProperty: '-rating' },
-  { name: 'популярности (по убыванию)', sortProperty: 'rating' },
-  { name: 'алфавиту (по возрастанию)', sortProperty: '-title' },
-  { name: 'алфавиту (по убыванию)', sortProperty: 'title' },
-  { name: 'цене по возрастанию)', sortProperty: '-price' },
-  { name: 'цене (по убыванию', sortProperty: 'price' },
+  { name: 'популярности (по возрастанию)', sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: 'популярности (по убыванию)', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'алфавиту (по возрастанию)', sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: 'алфавиту (по убыванию)', sortProperty: SortPropertyEnum.TITLE_ASC },
+  { name: 'цене по возрастанию)', sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: 'цене (по убыванию', sortProperty: SortPropertyEnum.PRICE_ASC },
 ];
 
 export const Sorting: React.FC = () => {
@@ -60,7 +60,7 @@ export const Sorting: React.FC = () => {
       {isVisiblePopup && (
         <div className={styles.sort__popup}>
           <ul>
-            {sortingList.map((obj: SortingItems, index) => (
+            {sortingList.map((obj: Sort, index) => (
               <li
                 key={index}
                 onClick={() => onClickListItem(obj)}
