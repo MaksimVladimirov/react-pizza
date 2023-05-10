@@ -1,11 +1,12 @@
 import styles from './Categories.module.scss';
+import React from 'react';
 
 type CategoriesProps = {
   value: number;
-  onChangeCategory: (index: number) => void 
-}
+  onChangeCategory: (index: number) => void;
+};
 
-export const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
+export const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCategory }) => {
   const pizzaCategories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (
@@ -19,4 +20,4 @@ export const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory 
       </ul>
     </div>
   );
-};
+});

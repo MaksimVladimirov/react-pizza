@@ -178,6 +178,22 @@ body {
             display: none;
           }
         }
+        &:disabled {
+          opacity: 0.4;
+          border-color: #8d8d8d;
+
+          &:active {
+            transform: none;
+          }
+
+          &:hover {
+            background-color: #b6b6b6;
+          }
+
+          svg path {
+            fill: #8d8d8d;
+          }
+        }
       }
 
       b {

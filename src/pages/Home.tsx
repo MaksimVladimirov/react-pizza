@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
@@ -18,9 +18,9 @@ export const Home: React.FC = () => {
   const dispatch = useAppDispatch();
   const isSearch = useRef(false);
 
-  const onChangeCategory = (index: number) => {
+  const onChangeCategory = useCallback((index: number) => {
     dispatch(setCategoryId(index));
-  };
+  }, []);
 
   const onChangePage = (number: number) => {
     dispatch(setCurrentPageCount(number));
@@ -84,13 +84,13 @@ export const Home: React.FC = () => {
   // }, []);
 
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
-  const pizzasItems = items.map((pizza: PizzaInfo) => <PizzaBlock {...pizza} />);
+  const pizzasItems = items.map((pizza: any) => <PizzaBlock key={pizza.id} {...pizza} />);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sorting />
+        <Sorting value={sort} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === 'error' ? (
