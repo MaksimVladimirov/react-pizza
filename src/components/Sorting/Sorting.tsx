@@ -35,8 +35,6 @@ export const Sorting: React.FC<SortPoppupProps> = React.memo(({ value }) => {
     setVisiblePopup(false);
   };
 
-  console.log('SortPoppup rendered');
-
   useEffect(() => {
     const handleClickOutside = (event: PopupClickType) => {
       if (!event.composedPath().includes(sortRef.current)) {

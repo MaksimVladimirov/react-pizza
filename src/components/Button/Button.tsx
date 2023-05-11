@@ -2,10 +2,21 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CartItem, selectCart } from '../../redux/slices/cartSlice';
 import './Button.scss';
+import { useEffect, useRef } from 'react';
 
 export const Button = () => {
+  const isMounted = useRef(false);
   const { items, totalPrice } = useSelector(selectCart);
-  const totalCount = items.reduce((acc: number, item: CartItem ) => acc + item.count, 0);
+  const totalCount = items.reduce((acc: number, item: CartItem) => acc + item.count, 0);
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem('cart', json);
+      console.log(json)
+    }
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <Link to="/cart" className="button button--cart">
