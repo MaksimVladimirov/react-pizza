@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
-import { selectPizzaData } from '../redux/slices/pizzasSlice';
-import { Categories, Sorting, PizzaBlock, Skeleton, Pagination, sortingList } from '../components';
-import { setCategoryId, setCurrentPageCount, setFilters, selectFilter } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzasSlice';
+import { selectPizzaData } from '../redux/pizza/selectors';
+import { Categories, Sorting, PizzaBlock, Skeleton, Pagination } from '../components';
+import { setCategoryId, setCurrentPageCount } from '../redux/filter/slice';
+import { selectFilter } from '../redux/filter/selectors';
+
+import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { useAppDispatch } from '../redux/store';
-import { SearchPizzaParams } from '../redux/slices/pizzasSlice';
 
 export const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);

@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import './PizzaBlock.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { CartItem, addItem } from '../../redux/slices/cartSlice';
-import { selectCartItemById } from '../../redux/slices/cartSlice';
+import { addItem } from '../../redux/cart/slice';
+import { CartItem } from '../../redux/cart/types';
+
+import { selectCartItemById } from '../../redux/cart/selectors';
 import { Link } from 'react-router-dom';
 
 const typeNames = ['тонкое', 'традиционное'];

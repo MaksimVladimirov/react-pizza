@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { CartItem, selectCart } from '../../redux/slices/cartSlice';
+import { selectCart } from '../../redux/cart/selectors';
+import { CartItem } from '../../redux/cart/types';
 import './Button.scss';
 import { useEffect, useRef } from 'react';
 
@@ -13,7 +14,7 @@ export const Button = () => {
     if (isMounted.current) {
       const json = JSON.stringify(items);
       localStorage.setItem('cart', json);
-      console.log(json)
+      console.log(json);
     }
     isMounted.current = true;
   }, [items]);
