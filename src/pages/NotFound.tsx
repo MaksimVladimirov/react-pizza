@@ -1,3 +1,5 @@
 import { NotFoundComponent } from '../components';
 
-export const NotFound: React.FC = () => <NotFoundComponent />;
+const NotFound: React.FC = () => <NotFoundComponent />;
+
+export default NotFound;

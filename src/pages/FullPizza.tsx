@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-export const FullPizza: React.FC = () => {
+const FullPizza: React.FC = () => {
   const [pizza, setPizza] = useState<PizzaInfo>();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -32,3 +32,5 @@ export const FullPizza: React.FC = () => {
     </div>
   );
 };
+
+export default FullPizza;

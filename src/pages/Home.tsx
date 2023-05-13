@@ -1,13 +1,11 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
 
 import { selectPizzaData } from '../redux/pizza/selectors';
 import { Categories, Sorting, PizzaBlock, Skeleton, Pagination } from '../components';
 import { setCategoryId, setCurrentPageCount } from '../redux/filter/slice';
 import { selectFilter } from '../redux/filter/selectors';
-
 import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { useAppDispatch } from '../redux/store';
 
@@ -46,43 +44,8 @@ export const Home: React.FC = () => {
 
   // Если был первый рендер запрашиваем пиццы
   useEffect(() => {
-    // window.scrollTo(0, 0);
-    // if (!isSearch.current) {
     getPizzas();
-    // }
-
-    // isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
-
-  // // При первом рендере не вшивать параметры в URL
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     const queryString = qs.stringify({
-  //       sortProperty: sort.sortProperty,
-  //       categoryId,
-  //       currentPage,
-  //     });
-  //     navigate(`?${queryString}`);
-  //   }
-  //   isMounted.current = true;
-  // }, [categoryId, sort.sortProperty, searchValue, currentPage]);
-
-  // // Если был первый рендер, то проверяем URL- параметры и сохраняем в REDUX
-  // useEffect(() => {
-  //   if (window.location.search) {
-  //     const params = qs.parse(window.location.search.substring(1)) as unknown as SearchPizzaParams;
-  //     const sort = sortingList.find((object) => object.sortProperty === params.sortBy);
-  //     dispatch(
-  //       setFilters({
-  //         categoryId: Number(params.category),
-  //         currentPage: Number(params.currentPage),
-  //         searchValue: params.search,
-  //         sort: sort || sortingList[0],
-  //       })
-  //     );
-  //     isSearch.current = true;
-  //   }
-  // }, []);
 
   const skeleton = [...new Array(6)].map((_, index) => <Skeleton key={index}></Skeleton>);
   const pizzasItems = items.map((pizza: any) => <PizzaBlock key={pizza.id} {...pizza} />);

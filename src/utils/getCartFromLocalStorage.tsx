@@ -7,7 +7,7 @@ export const getCartFromLocalStorage = () => {
   const totalPrice = calcTotalPrice(items);
 
   return {
-    items : items as CartItem[],
+    items: items as CartItem[],
     totalPrice,
   };
 };
